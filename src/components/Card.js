@@ -18,13 +18,13 @@ class Card extends Component {
 
   render() {
     const {
-      card = {},
+      card,
+      listId,
       lists = [],
-      list = {},
       onRemoveCard = () => {},
     } = this.props;
     const { showOptions } = this.state;
-    const removeCard = () => onRemoveCard(list, card);
+    const removeCard = () => onRemoveCard(listId, card.id);
 
     return (
       <article className="Card">
@@ -35,7 +35,7 @@ class Card extends Component {
             <select
               className="Card-move"
               onChange={this.handleChange}
-              value={list.id}
+              value={listId}
             >
               {lists.map((list) => (
                 <option value={list.id} key={list.id}>

@@ -22,7 +22,7 @@ class CreateList extends Component {
 
     const { onCreateList } = this.props;
 
-    if (onCreateList) {
+    if (onCreateList && this.isValid) {
       onCreateList(this.state);
     }
 

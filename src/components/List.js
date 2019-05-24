@@ -12,7 +12,10 @@ class List extends Component {
     });
   };
 
-  createCard = () => {};
+  createCard = (card) => {
+    const { list, onCreateCard } = this.props;
+    if (onCreateCard) onCreateCard(list.id, card);
+  };
 
   removeList = () => {
     const { list, onRemoveList } = this.props;
@@ -23,7 +26,7 @@ class List extends Component {
   };
 
   render() {
-    const { list = {} } = this.props;
+    const { list = {}, onRemoveCard } = this.props;
     const { showOptions } = this.state;
 
     return (
@@ -44,7 +47,14 @@ class List extends Component {
           Toggle Options
         </button>
         <div>
-          {list.cards.map((card) => <Card key={card.id} card={card} />)}
+          {list.cards.map(card => (
+            <Card
+              key={card.id}
+              card={card}
+              onRemoveCard={onRemoveCard}
+              listId={list.id}
+            />
+          ))}
         </div>
       </article>
     );
