@@ -5,5 +5,13 @@ import Application from './components/Application';
 
 import './index.scss';
 import { UsersProvider } from './components/UsersContext';
+import { ListsProvider } from './components/ListsContext';
 
-ReactDOM.render(<UsersProvider><Application /></UsersProvider>, document.getElementById('root'));
+ReactDOM.render(
+  <ListsProvider>
+    <UsersProvider>
+      <Application />
+    </UsersProvider>
+  </ListsProvider>,
+  document.getElementById('root')
+);
