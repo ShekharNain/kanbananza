@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CardAssignment from './CardAssignment';
 
 class Card extends Component {
   state = { showOptions: false };
@@ -21,6 +22,8 @@ class Card extends Component {
       card,
       listId,
       lists = [],
+      users,
+      onAssignCard,
       onRemoveCard = () => {},
     } = this.props;
     const { showOptions } = this.state;
@@ -48,6 +51,7 @@ class Card extends Component {
             </button>
           </div>
         )}
+        <CardAssignment users={users} card={card} onAssignCard={onAssignCard} />
         <button className="Card-toggle" onClick={this.toggleOptions}>
           Toggle Options
         </button>

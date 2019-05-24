@@ -73,16 +73,64 @@ class Application extends Component {
     return this.setState({ lists });
   };
 
+  createUser = user => {
+    const { users } = this.state;
+    this.setState({
+      users: [...users, { ...user, id: Date.now().toString() }]
+    });
+  };
+
+  updateUser = targetUser => {
+    let { users } = this.state;
+
+    users = users.map(user => {
+      if (user.id === targetUser.id) {
+        return { ...user, name: targetUser.name };
+      }
+      return user;
+    });
+
+    this.setState({ users });
+  };
+
+  assignCard = (targetCard, targetUserId) => {
+    let { lists, users } = this.state;
+
+    lists = lists.map(list => {
+      if (!list.cards.includes(targetCard)) {
+        return list;
+      }
+
+      const cards = list.cards.map(card => {
+        if (card.id === targetCard.id) {
+          if (!targetUserId) return { ...card, assignedTo: '' };
+          return { ...card, assignedTo: targetUserId };
+        }
+        return card;
+      });
+
+      return { ...list, cards };
+    });
+
+    this.setState({ lists });
+  };
+
   render() {
     const { lists, users } = this.state;
 
     return (
       <main className="Application">
-        <Users users={users} />
+        <Users
+          users={users}
+          onCreateUser={this.createUser}
+          onUpdateUser={this.updateUser}
+        />
         <section>
           <CreateList onCreateList={this.createList} />
           <Lists
             lists={lists}
+            users={users}
+            onAssignCard={this.assignCard}
             onCreateCard={this.createCard}
             onRemoveList={this.removeList}
             onRemoveCard={this.removeCard}

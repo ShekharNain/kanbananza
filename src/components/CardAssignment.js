@@ -3,20 +3,23 @@ import React from 'react';
 const CardAssignment = ({
   card = {},
   users = [],
-  user = {},
-  assignCardToUser = () => {},
+  onAssignCard = () => {},
 }) => {
   const handleChange = (event) => {
     const userId = event.target.value;
 
-    if (assignCardToUser) assignCardToUser(card.id, userId);
+    if (onAssignCard) onAssignCard(card, userId);
   };
+
+  const owner = users.find(user => user.id === card.assignedTo);
+
+  console.log({ card, owner });
 
   return (
     <div className="CardAssignment" style={{ fontSize: '0.8em' }}>
-      {card.assignedTo ? (
+      {owner ? (
         <p>
-          Card assigned to <strong>{user.name}</strong>.
+          Card assigned to <strong>{owner.name}</strong>.
         </p>
       ) : (
         <p>Card unassigned.</p>

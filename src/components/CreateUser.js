@@ -8,6 +8,8 @@ class CreateUser extends Component {
 
     const { onCreateUser } = this.props;
 
+    console.log("onCreateUser", onCreateUser, this.props);
+
     if (onCreateUser) onCreateUser(this.state);
 
     this.setState({ name: '', email: '' });
