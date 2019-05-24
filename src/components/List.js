@@ -12,7 +12,7 @@ class List extends Component {
     });
   };
 
-  createCard = (card) => {
+  createCard = card => {
     const { list, onCreateCard } = this.props;
     if (onCreateCard) onCreateCard(list.id, card);
   };
@@ -26,7 +26,7 @@ class List extends Component {
   };
 
   render() {
-    const { list = {}, onRemoveCard } = this.props;
+    const { list = {}, lists, onRemoveCard, onMoveCardToList } = this.props;
     const { showOptions } = this.state;
 
     return (
@@ -51,6 +51,8 @@ class List extends Component {
             <Card
               key={card.id}
               card={card}
+              lists={lists}
+              onMoveCardToList={onMoveCardToList}
               onRemoveCard={onRemoveCard}
               listId={list.id}
             />

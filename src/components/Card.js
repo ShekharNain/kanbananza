@@ -9,11 +9,11 @@ class Card extends Component {
     });
   };
 
-  handleChange = (event) => {
-    const newListId = event.target.value;
-    const { card } = this.props;
+  moveCardToList = (event) => {
+    const listId = event.target.value;
+    const { card, onMoveCardToList } = this.props;
 
-    this.props.onListChange(card, newListId);
+    if (onMoveCardToList) onMoveCardToList(card, listId);
   };
 
   render() {
@@ -34,7 +34,7 @@ class Card extends Component {
           <div className="Card-options">
             <select
               className="Card-move"
-              onChange={this.handleChange}
+              onChange={this.moveCardToList}
               value={listId}
             >
               {lists.map((list) => (

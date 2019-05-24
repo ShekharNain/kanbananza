@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateList from './CreateList';
 import Lists from './Lists';
+import Users from './Users';
 
 import defaultState from '../default-state.json';
 
@@ -56,12 +57,28 @@ class Application extends Component {
     this.setState({ lists });
   };
 
+  moveCardToList = (targetCard, newListId) => {
+    let { lists } = this.state;
+
+    lists = lists.map(list => {
+      let newCards;
+      if (list.id === newListId) {
+        newCards = [...list.cards, targetCard];
+      } else {
+        newCards = list.cards.filter(card => card.id !== targetCard.id);
+      }
+      return { ...list, cards: newCards };
+    });
+
+    return this.setState({ lists });
+  };
+
   render() {
-    const { lists } = this.state;
+    const { lists, users } = this.state;
 
     return (
       <main className="Application">
-        <div>{/* Users will go here! */}</div>
+        <Users users={users} />
         <section>
           <CreateList onCreateList={this.createList} />
           <Lists
@@ -69,6 +86,7 @@ class Application extends Component {
             onCreateCard={this.createCard}
             onRemoveList={this.removeList}
             onRemoveCard={this.removeCard}
+            onMoveCardToList={this.moveCardToList}
           />
         </section>
       </main>
