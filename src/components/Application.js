@@ -4,6 +4,8 @@ import Lists from './Lists';
 import Users from './Users';
 
 import defaultState from '../default-state.json';
+import { UsersContext } from './UsersContext';
+
 
 class Application extends Component {
   state = defaultState;

@@ -1,9 +1,9 @@
 import React from 'react';
 import withUsers from './withUsers';
+import { UsersContext } from './UsersContext';
 
 const CardAssignment = ({
   card = {},
-  users = [],
   onAssignCard = () => {},
 }) => {
   const handleChange = (event) => {
@@ -11,6 +11,8 @@ const CardAssignment = ({
 
     if (onAssignCard) onAssignCard(card, userId);
   };
+
+  const { users } = React.useContext(UsersContext);
 
   const owner = users.find(user => user.id === card.assignedTo);
 
@@ -35,4 +37,4 @@ const CardAssignment = ({
   );
 };
 
-export default withUsers(CardAssignment);
+export default CardAssignment;

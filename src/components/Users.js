@@ -2,9 +2,10 @@ import React from 'react';
 
 import CreateUser from './CreateUser';
 import User from './User';
-import withUsers from './withUsers';
+import { UsersContext } from './UsersContext';
 
-const Users = ({ users = [], createUser, updateUser }) => {
+const Users = () => {
+  const { users, createUser, updateUser } = React.useContext(UsersContext);
   return (
     <section className="Users">
       <h2>Users</h2>
@@ -16,4 +17,4 @@ const Users = ({ users = [], createUser, updateUser }) => {
   );
 };
 
-export default withUsers(Users);
+export default Users;

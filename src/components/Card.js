@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardAssignment from './CardAssignment';
+import { UsersContext } from './UsersContext';
 
 class Card extends Component {
   state = { showOptions: false };
