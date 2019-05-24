@@ -3,7 +3,6 @@ import List from './List';
 
 const Lists = ({
   lists = [],
-  users,
   onAssignCard,
   onRemoveList,
   onRemoveCard,
@@ -16,7 +15,6 @@ const Lists = ({
         <List
           list={list}
           lists={lists}
-          users={users}
           key={list.id}
           onAssignCard={onAssignCard}
           onCreateCard={onCreateCard}

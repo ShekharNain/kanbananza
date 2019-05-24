@@ -1,4 +1,5 @@
 import React from 'react';
+import withUsers from './withUsers';
 
 const CardAssignment = ({
   card = {},
@@ -12,8 +13,6 @@ const CardAssignment = ({
   };
 
   const owner = users.find(user => user.id === card.assignedTo);
-
-  console.log({ card, owner });
 
   return (
     <div className="CardAssignment" style={{ fontSize: '0.8em' }}>
@@ -36,4 +35,4 @@ const CardAssignment = ({
   );
 };
 
-export default CardAssignment;
+export default withUsers(CardAssignment);

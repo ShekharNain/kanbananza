@@ -22,7 +22,6 @@ class Card extends Component {
       card,
       listId,
       lists = [],
-      users,
       onAssignCard,
       onRemoveCard = () => {},
     } = this.props;
@@ -51,7 +50,7 @@ class Card extends Component {
             </button>
           </div>
         )}
-        <CardAssignment users={users} card={card} onAssignCard={onAssignCard} />
+        <CardAssignment card={card} onAssignCard={onAssignCard} />
         <button className="Card-toggle" onClick={this.toggleOptions}>
           Toggle Options
         </button>
